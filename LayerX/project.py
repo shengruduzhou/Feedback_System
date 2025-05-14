@@ -7,10 +7,10 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 #Data Upload
-eai_df = pl.read_csv("E:\Project\LayerX\data\expense_account_items.csv",encoding='UTF-8')
-requests_df = pl.read_csv("E:\Project\LayerX\data\expense_account_requests.csv",encoding='UTF-8')
-rd_df = pl.read_csv("E:\Project\LayerX\data\request_details.csv",encoding='UTF-8')
-or_df = pl.read_csv("E:\Project\LayerX\data\ocr_results.csv",encoding='UTF-8')
+request_df = pl.read_csv('E:\Project\LayerX\data\requests.csv')
+details_df = pl.read_csv('E:\Project\LayerX\data\request_details.csv')
+eai_df = pl.read_csv('E:\Project\LayerX\data\expense_account_items.csv')
+ocr_df = pl.read_csv('E:\Project\LayerX\data\ocr_results.csv')
 #CSVファイルはUTF-8で編成されたが、実際に展示と運行していたときに、UTF-8でタクシー�?01JNX015ZQM2RS2Y7QJG9KQ7JEのような編成が出た。CSVファイル編成する時は間違えるかも。
 
 #EDA
@@ -28,42 +28,58 @@ for col in eai_df.select(pl.col(pl.Utf8)).columns:
 
 #EDA requests_df
 print("requests_df info:")
-requests_df.glimpse()
+request_df.glimpse()
 print("\n Missing values in requests_df:")
-print(requests_df.null_count())
+print(request_df.null_count())
 print("\n Descriptive statistics of numerical columns:")
-print(requests_df.describe())
+print(request_df.describe())
 print("\n Value counts of categorical columns:")
-for col in requests_df.select(pl.col(pl.Utf8)).columns:
+for col in request_df.select(pl.col(pl.Utf8)).columns:
     print(f"\n Column: {col}")
-    print(requests_df[col].value_counts())
+    print(request_df[col].value_counts())
     
 #EDA rd_df
 print("request_details info:")
-rd_df.glimpse()
+details_df.glimpse()
 print("\n Missing values in request_details:")
-print(rd_df.null_count())
+print(details_df.null_count())
 print("\n Descriptive statistics of numerical columns:")
-print(rd_df.describe())
+print(details_df.describe())
 print("\n Value counts of categorical columns:")
-for col in rd_df.select(pl.col(pl.Utf8)).columns:
+for col in details_df.select(pl.col(pl.Utf8)).columns:
     print(f"\n Column: {col}")
-    print(rd_df[col].value_counts())
+    print(details_df[col].value_counts())
 
-#EDA or_df
+#EDA ocr_df
 print("ocr_results info:")
-or_df.glimpse()
+ocr_df.glimpse()
 print("\n Missing values in ocr_results:")
-print(or_df.null_count())
+print(ocr_df.null_count())
 print("\n Descriptive statistics of numerical columns:")
-print(or_df.describe())
+print(ocr_df.describe())
 print("\n Value counts of categorical columns:")
-for col in or_df.select(pl.col(pl.Utf8)).columns:
+for col in ocr_df.select(pl.col(pl.Utf8)).columns:
     print(f"\n Column: {col}")
-    print(or_df[col].value_counts())
+    print(ocr_df[col].value_counts())
 
 #Visualization examples
+#VE request
 plt.figure(figsize=(10, 6))
-sns.histplot(requests_df['request_amount'], bins=30, kde=True)
+sns.histplot(request_df['request_amount'], bins=30, kde=True)
 plt.title('Distribution of Request Amounts')
+plt.show()
+#VE request_details
+plt.figure(figsize=(10, 6))
+sns.histplot(details_df['details_amount'], bins=30, kde=True)
+plt.title('Distribution of Details Amounts')
+plt.show()
+#VE eai
+plt.figure(figsize=(10, 6))
+sns.histplot(eai_df['expense_amount'], bins=30, kde=True)
+plt.title('Distribution of Expense Amounts')
+plt.show()
+#VE ocr
+plt.figure(figsize=(10, 6))
+sns.histplot(ocr_df['result_amount'], bins=30, kde=True)
+plt.title('Distribution of OCR Results Amounts')
 plt.show()
