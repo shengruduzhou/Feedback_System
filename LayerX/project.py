@@ -83,3 +83,18 @@ plt.figure(figsize=(10, 6))
 sns.histplot(ocr_df['result_amount'], bins=30, kde=True)
 plt.title('Distribution of OCR Results Amounts')
 plt.show()
+
+#merge dataframes
+#Merge requests & request_details
+combined_df_1 = request_df.join(details_df, left_on='id', right_on='request_id', suffix= '_detals',how='left')
+print("\n requests + details:")
+print(combined_df_1)
+#Merge combined_df_1 & expense_account_items
+combined_df_2 = combined_df_1.join(eai_df, left_on='expense_account_id', right_on='id', suffix= '_eai',how='left')
+print("\n requests + details + eai:")
+print(combined_df_2)
+#Merge combined_df_2 & ocr_results
+combined_df = combined_df_2.join(ocr_df, left_on='id_details', right_on='request_detail_id', suffix= '_ocr',how='left')
+print("\n requests + details + eai + ocr:")
+print(combined_df)
+combined_df.glimpse()
