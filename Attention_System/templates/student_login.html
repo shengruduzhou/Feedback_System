@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class="min-h-screen flex items-center justify-center bg-gray-100">
+        <div class="card w-full max-w-md bg-white shadow-md">
+            <div class="card-header">
+                <h1 class="card-title text-2xl font-bold text-center">Student Login</h1>
+                <p class="card-description text-center">Enter your credentials to access the dashboard</p>
+            </div>
+            <form id="student-loginForm">
+                <div class="card-content space-y-4">
+                    <div class="space-y-2">
+                        <label for="username" class="label">Username</label>
+                        <input type="text" id="student-username" name="username" class="input" placeholder="Enter your username"
+                            required>
+                    </div>
+                    <div class="space-y-2">
+                        <label for="password" class="label">Password</label>
+                        <input type="password" id="student-password" name="password" class="input" placeholder="Enter your password"
+                            required>
+                    </div>
+                    <div class="card-footer flex flex-col space-y-2">
+                        <button type="submit" class="button1 w-full"
+                            id="student-login">Login</button>
+                        <div id="error-message" style="color:red; display:none;text-align: center;">Plase enter the
+                            correct username or password</div>
+                        <button type="button" class="button2 w-full" id="student_login-back-to-login_selection">Back to Login
+                            Selection</a>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <script src="/static/js/script.js"></script>
+</body>
+
+</html>
