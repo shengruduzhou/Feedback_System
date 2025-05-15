@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <mata name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Teacher Dashboard</title>
+        <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <header class="teacherD-header">
+        <h1 class="teacherD">Teacher Dashboard</h1>
+        <button id="teacher-logout" class="teacherD-logout">Logout</button>
+    </header>
+    <main class="teacherD-mainContent">
+        <div id="chartsContainer" class="grid-teacher-container"></div>
+    </main>
+    <div id ="imageModal" class="image-modal">
+        <span class = "close">&times;</span>
+        <img id="modalContent" class="modal-content">
+        <div id = "modalFeedback" class="modal-feedback">{{feedback}}</div>
+    </div>
+    <script src="/static/js/script.js" defer></script>
+</body>
+
+</html>
